@@ -1,20 +1,27 @@
-import os
-from tornado import websocket, web, ioloop
+"""
+This is responsible for handle incoming messages
+"""
 import json
+from tornado import websocket, web, ioloop
+
 buttons = '0000'
 cl = []
-settings = {
-    "static_path": os.path.join(os.path.dirname(__file__), "static"),
 
-}
 
-print settings['static_path']
+
 class IndexHandler(web.RequestHandler):
+    """
+    This is responsible for render view
+    """
     def get(self):
 
-        self.render("index.html", buttons = buttons)
+        self.render("index.html", buttons=buttons)
+
 
 class SocketHandler(websocket.WebSocketHandler):
+    """
+    This is responsible for register/unregistered client
+    """
     def check_origin(self, origin):
         return True
 
@@ -27,17 +34,17 @@ class SocketHandler(websocket.WebSocketHandler):
             cl.remove(self)
 
 class ApiHandler(web.RequestHandler):
-
+    """
+    Accept the json data and pass to all clients
+    """
     @web.asynchronous
     def get(self, *args):
         self.finish()
-
-
         value = self.get_argument("value")
         global buttons
-        buttons= value
+        buttons = value
         print buttons
-        data = {"value" : buttons }
+        data = {"value" : buttons}
 
         data = json.dumps(data)
         for c in cl:
@@ -55,10 +62,11 @@ app = web.Application([
     (r'/', IndexHandler),
     (r'/ws', SocketHandler),
     (r'/api', ApiHandler),
-    (r'/static/(.*)', web.StaticFileHandler, {"path" : settings['static_path']})
+    (r'/static/(.*)', web.StaticFileHandler, {"path" : '/static'})
 
 ])
 
 if __name__ == '__main__':
+
     app.listen(8888)
     ioloop.IOLoop.instance().start()
