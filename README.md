@@ -6,7 +6,7 @@ This is a Simple project that assist to toggle RaspberryPI GPIO via web browser.
 
 * A python web server runs on Raspberry 
 * There are as many clients as browsers 
-* User interact with browser by toggling switchs 
+* User interact with browser by toggling switches 
 * The server reacts with user inputs
 * server pass the value to Raspberry PI 
 * Raspberry will response to server input 
