@@ -4,7 +4,9 @@
 
 
 
-var base_url = 'http://localhost:8888/api' //This is your server URL
+
+
+var base_url = 'http://'+location.host+'/api' //This is your server URL
 
 
 function sentdata(button_status) {

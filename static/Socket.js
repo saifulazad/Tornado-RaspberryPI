@@ -8,7 +8,7 @@
  *
  *
  */
-var url = 'ws://localhost:8888/ws';
+var url = 'ws://'+location.host+'/ws';
 
 var ws = new ReconnectingWebSocket(url, null, {debug: true, reconnectInterval: 3000});
 var $message = $('#message');
