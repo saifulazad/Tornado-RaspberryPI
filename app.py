@@ -1,13 +1,17 @@
 """
 This is responsible for handle incoming messages
 """
+import os
 import json
 from tornado import websocket, web, ioloop
 
 buttons = '0000'
 cl = []
 
+settings = {
+    "static_path": os.path.join(os.path.dirname(__file__), "static"),
 
+}
 
 class IndexHandler(web.RequestHandler):
     """
@@ -62,7 +66,7 @@ app = web.Application([
     (r'/', IndexHandler),
     (r'/ws', SocketHandler),
     (r'/api', ApiHandler),
-    (r'/static/(.*)', web.StaticFileHandler, {"path" : '/static'})
+    (r'/static/(.*)', web.StaticFileHandler, {"path" : settings['static_path']})
 
 ])
 
