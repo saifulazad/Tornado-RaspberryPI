@@ -10,7 +10,7 @@ class Switching(object):
         self.GPIO.setmode(GPIO.BOARD)
         self.GPIO.setup(BOARD_PINS, GPIO.OUT)
         self.state =[0]*4
-        pass
+        
 
     def turnOn(self,position):
 
