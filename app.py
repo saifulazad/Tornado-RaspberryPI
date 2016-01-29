@@ -7,7 +7,9 @@ from tornado import websocket, web, ioloop
 
 buttons = '0000'
 cl = []
+from Switching import Switching
 
+switching = Switching()
 settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
 
@@ -49,6 +51,12 @@ class ApiHandler(web.RequestHandler):
         buttons = value
         print buttons
         data = {"value" : buttons}
+        if buttons[0] =='1':
+
+            switching.turnOn(3)
+
+        elif buttons[0] =='0':
+            switching.turnOff(3)
 
         data = json.dumps(data)
         for c in cl:
