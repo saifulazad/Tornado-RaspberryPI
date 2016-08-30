@@ -22,7 +22,7 @@ class IndexHandler(web.RequestHandler):
     """
     def get(self):
 
-        self.render("index.html", buttons=buttons)
+        self.render("index.html", buttons=switching.getState())
 
 
 class SocketHandler(websocket.WebSocketHandler):
@@ -56,7 +56,7 @@ class ApiHandler(web.RequestHandler):
             (index, pin) = x
             if buttons[index] == '1':
 
-                switching.turnOn(pin)
+                switching.turnOff(pin)
 
             elif buttons[index] == '0':
 

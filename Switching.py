@@ -25,4 +25,6 @@ class Switching(object):
         print  'Off' , position
 
     def getState(self):
-        return self.state
+        x = [ str(self.state[x]) for x in self.PINS ]
+        x = ''.join(x)
+        return x
