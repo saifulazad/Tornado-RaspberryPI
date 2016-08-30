@@ -10,7 +10,7 @@ buttons = '0000'
 cl = []
 from Switching import Switching
 
-switching = Switching()
+switching = Switching(pins)
 settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
 
