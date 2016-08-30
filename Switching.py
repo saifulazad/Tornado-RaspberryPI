@@ -1,14 +1,13 @@
 __author__ = 'Azad'
 import RPi.GPIO as GPIO
 
-BOARD_PINS = [13]
 class Switching(object):
 
-    def __init__(self):
+    def __init__(self, PINS):
 
-
+        self.PINS = PINS
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(BOARD_PINS, GPIO.OUT)
+        GPIO.setup(self.PINS, GPIO.OUT)
         self.state =[0]*4
         self.offset = 10
 

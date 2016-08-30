@@ -4,6 +4,7 @@ This is responsible for handle incoming messages
 import os
 import json
 from tornado import websocket, web, ioloop
+pins = [13, 15, 16]
 
 buttons = '0000'
 cl = []
@@ -50,13 +51,19 @@ class ApiHandler(web.RequestHandler):
         global buttons
         buttons = value
         print buttons
+
+        for x in enumerate(buttons,start=0):
+            (index, pin) = x
+            if pin == '1':
+
+                switching.turnOn(pins[index])
+
+            elif pin == '0':
+
+                switching.turnOn(pins[index])
+
+
         data = {"value" : buttons}
-        if buttons[0] =='1':
-
-            switching.turnOn(13)
-
-        elif buttons[0] =='0':
-            switching.turnOff(13)
 
         data = json.dumps(data)
         for c in cl:
