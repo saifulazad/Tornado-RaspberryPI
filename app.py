@@ -56,11 +56,11 @@ class ApiHandler(web.RequestHandler):
             (index, pin) = x
             if buttons[index] == '1':
 
-                switching.turnOff(pin)
+                switching.turnOn(pin)
 
             elif buttons[index] == '0':
 
-                switching.turnOn(pin)
+                switching.turnOff(pin)
 
 
         data = {"value" : buttons}

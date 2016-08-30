@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 class Switching(object):
 
     def __init__(self, PINS):
-
+	GPIO.cleanup()
         self.PINS = PINS
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.PINS, GPIO.OUT)
