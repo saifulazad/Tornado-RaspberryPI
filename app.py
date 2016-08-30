@@ -15,14 +15,13 @@ settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
 
 }
-
 class IndexHandler(web.RequestHandler):
     """
     This is responsible for render view
     """
     def get(self):
 
-        self.render("index.html", buttons=switching.getState())
+        self.render("index.html", buttons=switching.get_state())
 
 
 class SocketHandler(websocket.WebSocketHandler):
@@ -56,11 +55,11 @@ class ApiHandler(web.RequestHandler):
             (index, pin) = x
             if buttons[index] == '1':
 
-                switching.turnOn(pin)
+                switching.turn_on(pin)
 
             elif buttons[index] == '0':
 
-                switching.turnOff(pin)
+                switching.turn_off(pin)
 
 
         data = {"value" : buttons}
