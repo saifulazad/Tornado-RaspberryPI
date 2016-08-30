@@ -53,10 +53,10 @@ class ApiHandler(web.RequestHandler):
         data = {"value" : buttons}
         if buttons[0] =='1':
 
-            switching.turnOn(3)
+            switching.turnOn(13)
 
         elif buttons[0] =='0':
-            switching.turnOff(3)
+            switching.turnOff(13)
 
         data = json.dumps(data)
         for c in cl:
