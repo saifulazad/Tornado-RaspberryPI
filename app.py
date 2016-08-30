@@ -6,7 +6,7 @@ import json
 from tornado import websocket, web, ioloop
 pins = [13, 15, 16]
 
-buttons = '0000'
+buttons = '000'
 cl = []
 from Switching import Switching
 
