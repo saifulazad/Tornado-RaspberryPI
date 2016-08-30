@@ -52,15 +52,15 @@ class ApiHandler(web.RequestHandler):
         buttons = value
         print buttons
 
-        for x in enumerate(buttons,start=0):
+        for x in enumerate(pins,start=0):
             (index, pin) = x
-            if pin == '1':
+            if buttons[index] == '1':
 
-                switching.turnOn(pins[index])
+                switching.turnOn(pin)
 
-            elif pin == '0':
+            elif buttons[index] == '0':
 
-                switching.turnOn(pins[index])
+                switching.turnOn(pin)
 
 
         data = {"value" : buttons}
