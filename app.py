@@ -4,13 +4,26 @@ This is responsible for handle incoming messages
 import os
 import json
 from tornado import websocket, web, ioloop
-pins = [13, 15, 16]
+from SwitchingPWM import SwitchingPWM
 
+pins = [13, 15, 16]
+PORT1 = (3, 5, 7)
+PORT2 = (33, 35, 37)
+PORT3 = (26, 24, 22)
+
+PORT = (PORT1, PORT2, PORT3)
+
+BLUE, GREEN, RED = zip(PORT1, PORT2, PORT3)
+
+
+color_pair = (BLUE, GREEN, RED )
+# color_pair = dict(zip(('BLUE' , 'GREEN', 'RED'),(BLUE, GREEN, RED )))
 buttons = '000'
 cl = []
 from Switching import Switching
 
 switching = Switching(pins)
+switchingPWM = SwitchingPWM()
 settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
 
@@ -55,11 +68,12 @@ class ApiHandler(web.RequestHandler):
             (index, pin) = x
             if buttons[index] == '1':
 
-                switching.turn_on(pin)
+                #switching.turn_on(pin)
+                switchingPWM(color_pair[index])
 
             elif buttons[index] == '0':
-
-                switching.turn_off(pin)
+                pass
+                #switching.turn_off(pin)
 
 
         data = {"value" : buttons}
