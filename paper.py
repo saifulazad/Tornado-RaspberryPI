@@ -12,12 +12,17 @@ def work(val = True):
     for pin in LEDS:
         GPIO.output(pin, val)
         time.sleep(1)
+        GPIO.output(pin, False)
+        time.sleep(1)
+
+    for pin in LEDS:
+        GPIO.output(pin, False)
 
 
 while True:
     try:
-        work(True);
-        work(False)
+        work();
+        # work(False)
     except KeyboardInterrupt:
         break
 GPIO.cleanup()
